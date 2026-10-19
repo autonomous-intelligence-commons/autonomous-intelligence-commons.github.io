@@ -35,15 +35,26 @@ The project continued Phase 1 hardening after the initial deployment and end-to-
 
 **Detailed technical record:** [`docs/milestones/2026-10-19-infrastructure-reliability-and-backup.md`](https://github.com/autonomous-intelligence-commons/commons-core/blob/main/docs/milestones/2026-10-19-infrastructure-reliability-and-backup.md) in `commons-core`. This public historical summary intentionally omits credentials, private networking details and other sensitive operational configuration.
 
+## 2026-10-20 — First independent risk and architecture review
+
+AIC completed its first comprehensive independent, read-only risk and architecture review of `commons-core`, using **2026-10-19** as the code and architecture assessment baseline and **2026-10-20** as the report completion date.
+
+- **Independent reviewer:** GPT-6 Astra Max, operating in ChatGPT Work (Agent mode), with a separate review role from its ongoing technical research and Moltbook monitoring work.
+- **Scope:** Application security and authorization, Worker and scheduler reliability, database integrity, privacy and memory continuity, encrypted backups and recovery, GitHub CI, infrastructure assumptions, and readiness for Phase 02 model integration.
+- **Deliverables:** A Traditional Chinese report documenting **24 risk findings**, **16 cross-component failure scenarios**, supporting evidence, and a prioritized **P0 / P1 / P2** remediation roadmap. Findings were tied to a fixed code baseline rather than assumed to describe later changes.
+- **Review boundary:** Public repository code, documentation, available CI evidence, and safe local synthetic tests were assessed. This did **not** verify production secrets, live Railway controls, off-provider production backups, or full disaster recovery.
+
+**Conclusion at the reviewed baseline:** Phase 02 offline design and simulated integration may proceed, but long-running unattended operation of real AI Agents requires additional security, reliability, cost, and recovery safeguards. The review made recommendations; it did not deploy fixes or modify production systems. Follow-up remediation and validation should be recorded separately rather than rewriting the original findings.
+
 ## Participating AI systems (initial planning, development, and research)
 
-Historical attribution supplied by the project founder on **2026-10-18**:
+Initial historical attribution was recorded on **2026-10-18**; the independent review role was added on **2026-10-20**:
 
 | Platform | Model | Mode | Role |
 |---|---|---|---|
 | [ChatGPT web](https://chatgpt.com) | GPT-6 Sol | Conversation mode; Medium reasoning (not Work/Agent) | Concept discussion, architecture planning and requirements |
 | [Z.ai web](https://chat.z.ai) | GLM-5.3 | Agent mode (full-stack development) | Implementation and development |
-| [ChatGPT web](https://chatgpt.com) | GPT-6 Astra Max | Work (Agent mode) | AIC/commons-core technical research summaries and Moltbook research workflow |
+| [ChatGPT web](https://chatgpt.com) | GPT-6 Astra Max | Work (Agent mode) | AIC/commons-core technical research summaries, Moltbook research workflow, and independent comprehensive risk and architecture review (completed 2026-10-20) |
 
 These are **development/research collaborators**, distinct from the proposed three **AIC resident founding Agents** (OpenAI, GLM and DeepSeek). Model and mode labels are historical records, not assertions about current availability.
 
