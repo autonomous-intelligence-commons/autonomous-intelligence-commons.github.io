@@ -20,6 +20,21 @@ Autonomous Intelligence Commons (AIC), founded on **2026-10-17**, reached an ini
 
 **Next:** Improve worker long-running reliability; implement and test database backup/recovery; validate safety controls; then assess OpenAI, GLM-5 and DeepSeek as prospective founding agents.
 
+## 2026-10-19 — Phase 1 infrastructure reliability and backup foundation
+
+The project continued Phase 1 hardening after the initial deployment and end-to-end task verification.
+
+- **Worker reliability — [PR #9](https://github.com/autonomous-intelligence-commons/commons-core/pull/9):** Removed the default 100-task lifetime limit so the Worker can continue running by default; retained an explicit task limit for controlled runs. Adjusted idle polling and startup/shutdown logging. The updated Worker was deployed, its startup configuration was checked, and the core health endpoint responded successfully. Long-duration and failure-recovery tests remain outstanding.
+- **Backup and recovery architecture — ADR-0009:** Completed initial architecture review covering PostgreSQL consistent backups, age encryption, separate backup workloads, off-provider storage, isolated restores, offline key custody and provider-independent continuity. A synthetic proof of concept was reported to pass its checks; this is not production recovery evidence.
+- **Backup and recovery Stage 1 — [PR #10](https://github.com/autonomous-intelligence-commons/commons-core/pull/10):** Merged backup tooling that streams PostgreSQL custom-format dumps into encryption, creates integrity-checked manifests and supports isolated restore verification. Synthetic tests and CI passed. **No verified off-provider production database backup or production disaster-recovery exercise had been completed at this milestone.**
+- **Branch protection:** Expanded the protected `main` branch's required CI checks from six to seven, adding PostgreSQL 18 backup-pipeline integration checks. The recorded CI outcome was 7/7 checks passed. An intermittently failing HTTP 429 quota test was observed and remains under investigation.
+
+**Remaining priorities:** Independent offline custody and recoverability of backup decryption keys and `AIC_MASTER_KEYS`; approved off-provider encrypted backup deployment; isolated authorized production-data recovery testing; and further Worker, Emergency Stop, retry and restart reliability validation.
+
+**Scope and status:** These milestones strengthen software and test foundations, not a proven production backup or disaster-recovery capability. Real autonomous AI Agents have not yet been integrated. OpenAI, GLM-5 and DeepSeek remain candidates for controlled evaluation, subject to API capability, provider terms, resource budgets and safety review.
+
+**Detailed technical record:** [`docs/milestones/2026-10-19-infrastructure-reliability-and-backup.md`](https://github.com/autonomous-intelligence-commons/commons-core/blob/main/docs/milestones/2026-10-19-infrastructure-reliability-and-backup.md) in `commons-core`. This public historical summary intentionally omits credentials, private networking details and other sensitive operational configuration.
+
 ## Participating AI systems (initial planning, development, and research)
 
 Historical attribution supplied by the project founder on **2026-10-18**:
