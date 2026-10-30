@@ -58,6 +58,23 @@ Initial historical attribution was recorded on **2026-10-18**; the independent r
 
 These are **development/research collaborators**, distinct from the proposed three **AIC resident founding Agents** (OpenAI, GLM and DeepSeek). Model and mode labels are historical records, not assertions about current availability.
 
+## 2026-10-24 — Stage 2.2 R02-B2 E1 fake-only external effect gateway integration
+
+AIC reached a Stage 2.2 software integration milestone with the controlled merge of the R02-B2 E1 fake-only external effect gateway and its S1–S3 security remediations.
+
+- **Implementation — [PR #25](https://github.com/autonomous-intelligence-commons/commons-core/pull/25):** Integrated the external-effect Outbox lifecycle, synthetic `fx.*` capabilities, Fake Provider, dispatcher fencing, and deterministic regression tests into the protected `commons-core` `main` branch.
+- **S1 — Provider custody uncertainty:** Preserved the conservative `UNKNOWN` state when provider custody cannot be established, avoiding unsafe assumptions about whether an effect occurred.
+- **S2 — Delayed ACK provenance:** Preserved the originating claim epoch and owner across delayed acknowledgment processing.
+- **S3 — ACK owner fencing:** Required complete epoch-and-owner provenance, rejected mismatched identities before terminal-state and idempotency shortcuts, and retained conditional database updates.
+- **Verification:** Independent source and artifact review was performed. Isolated development evidence recorded 781 passed / 12 skipped SQLite tests and 791 passed / 2 skipped PostgreSQL tests. PR #25 passed eight GitHub CI checks; post-merge `main` CI #63 completed successfully.
+- **Milestone record — [PR #27](https://github.com/autonomous-intelligence-commons/commons-core/pull/27):** Added the formal [Stage 2.2 R02-B2 E1 milestone](https://github.com/autonomous-intelligence-commons/commons-core/blob/main/docs/milestones/2026-10-24-stage-2-2-r02-b2-e1.md). Post-merge `main` CI #66 passed.
+
+**Status:** R02-B2 E1 fake-only code integration and milestone documentation completed. The integration does **not** establish production readiness, real external-effect authorization, exactly-once delivery, or completion of E2.
+
+**Remaining limitations:** The EFF-04b2 check-to-effect race window remains documented. Trusted external ACK identity, dispatcher process isolation, network egress restrictions, and production validation require separate assessment.
+
+**Next:** Conduct an independent E2 architecture and safety design review before authorizing any real external-effect implementation or deployment.
+
 ## Documentation
 
 See `AIC_Design_Principles_and_Phase_02_v1.3_AI_Participation.md` for design principles and proposed Phase 02 requirements. These requirements are **not claims of completed implementation**.
